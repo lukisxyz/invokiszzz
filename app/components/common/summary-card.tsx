@@ -8,7 +8,7 @@ export default function SummaryCard({
   addition,
   link = null,
 }: {
-  title: string;
+  title: ReactNode;
   value: number;
   addition?: ReactNode;
   link?: string | null;
@@ -19,7 +19,10 @@ export default function SummaryCard({
         {title}
       </CardHeader>
       <CardContent>
-        <span className="text-slate-700 text-xl font-medium">{`${value} Invoices`}</span>
+        <span className="text-slate-700 text-xl font-medium">
+          {value}
+          <span className="text-base text-slate-500">{" invoices"}</span>
+        </span>
         {addition}
       </CardContent>
       {link && (

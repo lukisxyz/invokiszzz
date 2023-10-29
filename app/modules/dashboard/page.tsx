@@ -14,13 +14,13 @@ export default function DashboardPage({ data }: { data: any }) {
         />
         <div className="flex gap-3 my-3 w-full">
           <SummaryCard
-            title="Pending Invoice"
+            title={<span className="text-fuchsia-600">Pending Invoice</span>}
             link="/dashboard/invoice?status=pending"
             key="pending-invoice"
             value={23}
           />
           <SummaryCard
-            title="Paid Invoice"
+            title={<span className="text-emerald-600">Paid Invoice</span>}
             link="/dashboard/invoice?status=paid"
             key="paid-invoice"
             value={56}
