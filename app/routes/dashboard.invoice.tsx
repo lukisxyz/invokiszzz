@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import Navigation from "~/components/layout/navigation";
-import DashboardPage from "~/modules/dashboard/page";
+import HistoryPage from "~/modules/history/page";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,7 +15,7 @@ export default function Index() {
       <header>
         <Navigation />
       </header>
-      <DashboardPage />
+      <HistoryPage />
     </main>
   );
 }

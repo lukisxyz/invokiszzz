@@ -9,7 +9,7 @@ export default function Menu({
   onLogout: Function;
 }) {
   return (
-    <nav className="list-none flex flex-col space-y-6 mt-6">
+    <nav className="list-none flex flex-col space-y-6 mt-12">
       <li>
         <Button
           variant="link"
