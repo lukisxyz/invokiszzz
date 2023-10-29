@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import {
   createColumnHelper,
   flexRender,
@@ -8,18 +9,22 @@ import {
 type Person = {
   firstName: string;
   lastName: string;
+  id: string | number;
 };
 
 const defaultData: Person[] = [
   {
+    id: 1,
     firstName: "tanner",
     lastName: "linsley",
   },
   {
+    id: 2,
     firstName: "tandy",
     lastName: "miller",
   },
   {
+    id: 3,
     firstName: "joe",
     lastName: "dirte",
   },
@@ -32,11 +37,23 @@ const columns = [
     cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: "lastName",
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
+  columnHelper.accessor("lastName", {
+    cell: (info) => info.getValue(),
     footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor((row) => row.id, {
+    id: "id",
+    cell: (info) => (
+      <i>
+        <Link
+          className="text-sm font-semibold text-blue-600 hover:underline"
+          to={`/dashboard/invoice/${info.row.id}`}
+        >
+          Detail
+        </Link>
+      </i>
+    ),
+    header: () => <span></span>,
   }),
 ];
 

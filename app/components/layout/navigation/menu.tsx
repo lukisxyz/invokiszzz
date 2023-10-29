@@ -1,5 +1,7 @@
 import { Link } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
+import { menuLists } from "~/lib/menu";
+import type { MenuItem } from "~/lib/types";
 
 export default function Menu({
   onClick,
@@ -10,67 +12,18 @@ export default function Menu({
 }) {
   return (
     <nav className="list-none flex flex-col space-y-6 mt-12">
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          onClick={() => onClick()}
-        >
-          <Link to="/dashboard">Dashboard</Link>
-        </Button>
-      </li>
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          onClick={() => onClick()}
-        >
-          <Link to="/dashboard/invoice">Invoice History</Link>
-        </Button>
-      </li>
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          onClick={() => onClick()}
-        >
-          <Link to="/dashboard/channel">Channel</Link>
-        </Button>
-      </li>
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          onClick={() => onClick()}
-        >
-          <Link to="/dashboard/report">Reports</Link>
-        </Button>
-      </li>
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          onClick={() => onClick()}
-        >
-          <Link to="/about">About</Link>
-        </Button>
-      </li>
-      <li>
-        <Button
-          variant="link"
-          className="text-lg font-semibold text-stone-600"
-          asChild
-          disabled
-          onClick={() => onClick()}
-        >
-          <Link to="/setting">Settings</Link>
-        </Button>
-      </li>
+      {menuLists.map((i: MenuItem) => (
+        <li key={i.link}>
+          <Button
+            variant="link"
+            className="text-lg font-semibold text-stone-600"
+            asChild
+            onClick={() => onClick()}
+          >
+            <Link to={i.link}>{i.label}</Link>
+          </Button>
+        </li>
+      ))}
       <div className="h-3" />
       <li>
         <Button
