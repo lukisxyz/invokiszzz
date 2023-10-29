@@ -7,10 +7,11 @@
     "build": "remix build",
     "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
+    "vercel-build": "prisma generate && prisma migrate deploy && remix build",
+    "prisma:generate": "prisma generate",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@nivo/line": "^0.83.0",
     "@prisma/client": "^5.5.2",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.0.2",
