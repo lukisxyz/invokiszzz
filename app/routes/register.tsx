@@ -5,7 +5,7 @@ import {
   json,
   redirect,
 } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useFetcher } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import validateAction from "~/lib/validation";
@@ -59,8 +59,7 @@ export async function action({ request }: ActionFunctionArgs) {
           { status: 400 }
         );
       } else {
-        console.log(e);
-        return json({ common: e }, { status: 400 });
+        return json({ status: 400 });
       }
     }
   }
@@ -68,6 +67,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Index() {
   const actionData = useActionData<typeof action>();
+  const fetcher = useFetcher();
+  const isSubmitting = fetcher.state !== "idle";
 
   return (
     <main className="wrapper page-container">
@@ -78,7 +79,7 @@ export default function Index() {
               Register An Account
             </h1>
           </div>
-          <Form method="post">
+          <fetcher.Form method="post">
             <label
               htmlFor="email"
               className="text-slate-600 text-sm font-medium"
@@ -149,10 +150,10 @@ export default function Index() {
               </div>
             ) : null}
             <br />
-            <Button className="mt-7" type="submit">
-              Register
+            <Button disabled={isSubmitting} className="mt-7" type="submit">
+              {isSubmitting ? "Processing ..." : "Register"}
             </Button>
-          </Form>
+          </fetcher.Form>
         </div>
       </div>
     </main>
